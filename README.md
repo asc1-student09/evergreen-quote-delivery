@@ -1,37 +1,61 @@
-# Evergreen Insurance Quote — Engineering Starter
+# Evergreen Quote — Capstone Starter Kit
 
-This is the **engineering team's starter project** for the Evergreen Insurance
-Quote product. It is the baseline you, as Delivery Lead, will oversee and
-*assemble* into a finished app this week — you will not author it from scratch.
+This folder is your **starter kit**. Every "provided piece" the lab tells you to use lives here. You assemble from these — you do not author new code.
 
-It runs as-is: a placeholder landing page that loads in the browser today, on
-Day 1, so you have something working to lead from. Over the week you replace the
-placeholder with the real, assembled page using the provided pieces in your lab
-kit.
+On the lab VM this folder is deployed to:
 
-## What's here
+    ~/LabFiles/wa3855-cap-phase-1-capstone-project-leaders/
 
-| File | What it is |
-|---|---|
-| `index.html` | A runnable placeholder landing page. Loads in Live Server today. You replace it on Day 2 with the assembled page. |
-| `README.md` | This file. |
-| `CAPSTONE-BRIEF.md` | The brief the engineering team worked from — read it first to understand the product and form your opinions. |
+## What's in here
 
-## How to run it
+| Folder | What it's for | When you use it |
+|---|---|---|
+| `starter/` | The engineering team's runnable starter project (`index.html`, `README.md`, `CAPSTONE-BRIEF.md`). Push it to your own GitHub repo and assemble onto it. | **Day 1** — read the brief, run it, push it to GitHub. |
+| `html-partials/` | Section snippets (`header.html`, `hero.html`, `quote-form.html`, `testimonials.html`, `footer.html`) and a page skeleton (`index-skeleton.html`) with `<!-- INSERT: ... -->` markers. | **Day 2 morning** — assemble `index.html`. |
+| `theme/` | `theme.css` — the brand theme. Drop it in, link it from `index.html`. | **Day 2 morning** — apply the theme. |
+| `js-snippets/` | `quote-calc.js` — the provided `calculatePremium(...)` function. | **Day 3 morning** — wire to the form. |
+| `workflows/` | `ci.yml` — the GitHub Actions CI workflow. | **Day 3 morning** — enable CI. |
+| `templates/` | Markdown templates for every required deliverable. | **All week** — copy into your `delivery-leadership-package/`. |
+| `delivery-leadership-package/` | An **empty scaffold** (just a `.gitkeep`) for your written leadership artifacts. Copy it into your own repo on Day 1, then fill it from `templates/`. | **All week** — your deliverables live here. |
 
-1. Open this folder in VS Code.
-2. Right-click `index.html` → **Open with Live Server**.
-3. Confirm the placeholder Evergreen page loads in the browser.
+> **Note:** The `solutions/` folder that sits next to this one is **not part of the starter kit** — it is a fully completed reference for instructors. Assemble your own work from the pieces above; don't copy from `solutions/`.
 
-## How this becomes the finished app
+## Bootstrap classes to apply (Day 2)
 
-You assemble onto this project using the provided pieces in your lab kit
-(`~/LabFiles/wa3855-cap-phase-1-capstone-project-leaders/`):
+When you assemble the partials, look for `<!-- CONFIG: add bootstrap class here: <class-name> -->` comments. Replace each one's parent element's `class=""` with the listed class. The exact mapping:
 
-- **Day 2** — replace `index.html` with the assembled page (built from
-  `html-partials/`), and add `css/theme.css` from `theme/`.
-- **Day 3** — add `js/quote-calc.js` from `js-snippets/` and wire it to the
-  form; enable the CI workflow from `workflows/`.
-- **Day 4** — open a pull request, review, and merge to `main`.
+| Partial | Element | Class to add |
+|---|---|---|
+| `header.html` | `<nav>` | `navbar navbar-expand-lg navbar-dark bg-success` |
+| `hero.html` | hero `<section>` | `py-5 text-center text-white bg-success` |
+| `quote-form.html` | form container `<section>` | `container py-4` |
+| `quote-form.html` | `<form>` | `row g-3` |
+| `testimonials.html` | `<section>` | `container py-5` |
+| `testimonials.html` | testimonial row | `row g-4` |
+| `footer.html` | `<footer>` | `py-3 text-center bg-dark text-light` |
 
-You are leading and assembling — not writing application code.
+To pick up Bootstrap, the skeleton already includes the Bootstrap 5 CDN `<link>` in `<head>`.
+
+## Wiring snippet for the calculator (Day 3)
+
+After you drop `js/quote-calc.js` into your repo and link it from `index.html`, add this `<script>` block **just before `</body>`**, **after** the `<script src="js/quote-calc.js"></script>` line:
+
+```html
+<script>
+  document.getElementById("quote-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var coverageType = document.getElementById("coverageType").value;
+    var coverageAmount = Number(document.getElementById("coverageAmount").value);
+    var premium = calculatePremium(coverageType, coverageAmount);
+    document.getElementById("premium-value").textContent = "$" + premium;
+    document.getElementById("premium-box").hidden = false;
+  });
+
+  // Keep the slider value label in sync.
+  var slider = document.getElementById("coverageAmount");
+  var display = document.getElementById("coverageAmountDisplay");
+  slider.addEventListener("input", function () { display.textContent = slider.value; });
+</script>
+```
+
+You are pasting this — not writing it.
