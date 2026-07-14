@@ -13,7 +13,7 @@
 
 ## What's next (tomorrow)
 
-- Add the Compare Plans navigation link requested by Marketing.
+- Add the Compare Plans navigation link requested by Marketing and validate it on desktop and mobile devices.
 - Wire the provided quote-calculation snippet.
 - Enable the CI workflow and review results.
 - Continue toward PR review and merge.
