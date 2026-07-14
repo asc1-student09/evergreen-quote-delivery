@@ -1,0 +1,19 @@
+# Decision Memo
+
+## Context
+
+The team needed to prioritize delivery of the core Evergreen Quote experience within a limited timeframe.
+
+## Options Considered
+
+1. Focus first on visual enhancements and testimonials.
+
+2. Focus first on the quote form, responsiveness, and core user experience.
+
+## Recommendation
+
+Prioritize assembly of the quote experience, responsiveness, and navigation before less critical visual enhancements.
+
+## Why
+
+The primary value of Evergreen Quote is allowing prospective customers to obtain a premium estimate quickly. A functioning quote experience delivers customer value, while testimonials and visual enhancements provide secondary benefits.
