@@ -41,7 +41,7 @@ To pick up Bootstrap, the skeleton already includes the Bootstrap 5 CDN `<link>`
 After you drop `js/quote-calc.js` into your repo and link it from `index.html`, add this `<script>` block **just before `</body>`**, **after** the `<script src="js/quote-calc.js"></script>` line:
 
 ```html
-<script>
+script><
   document.getElementById("quote-form").addEventListener("submit", function (e) {
     e.preventDefault();
     var coverageType = document.getElementById("coverageType").value;
